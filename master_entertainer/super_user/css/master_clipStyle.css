@@ -1,0 +1,48 @@
+.showD{
+    width: fit-content;
+    margin: 20px auto;
+    margin-top: 160px;
+    background-color: #b7c3bd;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px;
+}
+
+.showD .title{
+    width: fit-content;
+    margin: auto;
+    padding: 20px;
+}
+
+.showD .coverIm{
+    max-width: 600px;
+    padding: 10px;
+}
+
+.coverIm img{
+    width: 100%;
+}
+
+.Detail{
+    width: fit-content;
+    margin: auto;
+    padding-bottom: 30px;
+}
+.deletebtn{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+}
+
+.deletebtn button{
+    border: none;
+    padding: 15px 45px;
+    border-radius: 0 0 5px 0;
+    font-size: large;
+    cursor: pointer;
+}
+
+.deletebtn button:hover{
+    color: black;
+    background-color: #ffc2c2;
+}
