@@ -25,36 +25,34 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/navbarStyle.css">
-    <link rel="stylesheet" href="css/myShowStyle.css">
-    <link rel="stylesheet" href="../css/footerStyle.css">
-    <title><?php echo $stream['title'] ?></title>
-</head>
-<body>
-    <?php include('navbar.php') ?>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/navbarStyle.css">
+        <link rel="stylesheet" href="css/myShowStyle.css">
+        <link rel="stylesheet" href="../css/footerStyle.css">
+        <title><?php echo $stream['title'] ?></title>
+    </head>
+    <body>
+        <?php include('navbar.php') ?>
 
-    <?php if($stream): ?>
-        <div class="shCont">
-        <div class="shTitle">
-            <h1><?php echo $stream['title'] ?></h1>
+        <?php if($stream): ?>
+            <div class="shCont">
+            <div class="shTitle">
+                <h1><?php echo $stream['title'] ?></h1>
+            </div>
+
+            <div class="myshow">
+                <video controls autoplay muted>
+                    <source src="<?php echo $stream['file_url'] ?>" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+            </div>
         </div>
+        <?php else: ?>
+            <?php header('Location: index.php') ?>
+        <?php endif; ?>
 
-        <div class="myshow">
-            <video controls autoplay muted>
-                <source src="<?php echo $stream['file_url'] ?>" type="video/mp4">
-                Your browser does not support HTML5 video.
-            </video>
-        </div>
-    </div>
-    <?php else: ?>
-        <?php header('Location: index.php') ?>
-    <?php endif; ?>
+        <?php include('../footer.php') ?>
 
-    <?php include('../footer.php') ?>
-
-</body>
+    </body>
 </html>

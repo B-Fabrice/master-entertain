@@ -68,55 +68,55 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <title>master entertainer</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/loginStyle.css">
-    <link rel="stylesheet" href="css/footerStyle.css">
-</head>
-<body>
-    <div class="nav">
-        <h3>master entertainer</h3>
-    </div>
-        
-    <div class="welcm">
-        <div class="wlmessg">
-            <p>welcome to master entertainer.
-                join and enjoy different entertainment stuff like 
-                artist shows, football matches, movies and other many things.</p>
+    <head>
+        <title>master entertainer</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/loginStyle.css">
+        <link rel="stylesheet" href="css/footerStyle.css">
+    </head>
+    <body>
+        <div class="nav">
+            <h3>master entertainer</h3>
         </div>
-        <div class="loginForm">
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                <fieldset>
-                    <div class="eCont">
-                        <?php if($mssg):?>
-                            <div class="mssg"><p><?php echo $mssg ?></p></div>
-                        <?php endif; ?>
-                        <?php if($error):?>
-                        <div class="error"><p><?php echo $error ?></p></div>
-                        <?php endif; ?>
-                        
-                        <label for="email">email: </label><br>
-                        <input type="email" name="email" required autofocus value="<?php echo $email ?>"><br>
-                        <label for="password">password: </label><br>
-                        <input type="password" name="password" required autocomplete="off"><br>
+            
+        <div class="welcm">
+            <div class="wlmessg">
+                <p>welcome to master entertainer.
+                    join and enjoy different entertainment stuff like 
+                    artist shows, football matches, movies and other many things.</p>
+            </div>
+            <div class="loginForm">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <fieldset>
+                        <div class="eCont">
+                            <?php if($mssg):?>
+                                <div class="mssg"><p><?php echo $mssg ?></p></div>
+                            <?php endif; ?>
+                            <?php if($error):?>
+                            <div class="error"><p><?php echo $error ?></p></div>
+                            <?php endif; ?>
+                            
+                            <label for="email">email: </label><br>
+                            <input type="email" name="email" required autofocus value="<?php echo $email ?>"><br>
+                            <label for="password">password: </label><br>
+                            <input type="password" name="password" required autocomplete="off"><br>
 
-                        <input type="radio" name="myrole" value="user" checked>
-                        <label for="role">user</label><br>
-                        <input type="radio" name="myrole" value="super_user">
-                        <label for="role">super-user</label><br>
+                            <input type="radio" name="myrole" value="user" checked>
+                            <label for="role">user</label><br>
+                            <input type="radio" name="myrole" value="super_user">
+                            <label for="role">super-user</label><br>
 
-                        <input type="submit" name="submit" value="login">
-                        <div class="reg">
-                            <p>do not have account? <a href="signup.php">register</a></p>
-                        
+                            <input type="submit" name="submit" value="login">
+                            <div class="reg">
+                                <p>do not have account? <a href="signup.php">register</a></p>
+                            
+                            </div>
                         </div>
-                    </div>
-                </fieldset>
-            </form>
+                    </fieldset>
+                </form>
+            </div>
         </div>
-    </div>
-    
-    <?php include('footer.php') ?>
-</body>                            
+        
+        <?php include('footer.php') ?>
+    </body>                            
 </html>

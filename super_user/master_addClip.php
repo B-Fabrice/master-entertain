@@ -70,51 +70,49 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/navbarStyle.css">
-    <link rel="stylesheet" href="css/master_addClipStyle.css">
-    <link rel="stylesheet" href="../css/footerStyle.css">
-    <title>add clip</title>
-</head>
-<body>
-    <?php include('navbar.php') ?>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/navbarStyle.css">
+        <link rel="stylesheet" href="css/master_addClipStyle.css">
+        <link rel="stylesheet" href="../css/footerStyle.css">
+        <title>add clip</title>
+    </head>
+    <body>
+        <?php include('navbar.php') ?>
 
-    <div class="myClip">
-        <div class="clipCOnt">
-            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
-                <label for="title">Title</label><br>
-                <input type="text" name="title"><br>
+        <div class="myClip">
+            <div class="clipCOnt">
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
+                    <label for="title">Title</label><br>
+                    <input type="text" name="title"><br>
 
-                <label for="bg_image">Stream Background</label><br>
-                <input type="file" name="bg_image"><br>
+                    <label for="bg_image">Stream Background</label><br>
+                    <input type="file" name="bg_image"><br>
 
-                <label for="genre">Genre</label><br>
-                <input type="text" name="genre"><br>
+                    <label for="genre">Genre</label><br>
+                    <input type="text" name="genre"><br>
 
-                <label for="cast">cast</label><br>
-                <input type="text" name="cast"><br>
+                    <label for="cast">cast</label><br>
+                    <input type="text" name="cast"><br>
 
-                <label for="duration">Stream File</label><br>
-                <input type="file" name="file"><br>
+                    <label for="duration">Stream File</label><br>
+                    <input type="file" name="file"><br>
 
-                <label for="duration">Duration</label><br>
-                <input type="datetime" name="duration"><br>
+                    <label for="duration">Duration</label><br>
+                    <input type="datetime" name="duration"><br>
 
-                <label for="price">price</label><br>
-                <input type="text" name="price"><br>
+                    <label for="price">price</label><br>
+                    <input type="text" name="price"><br>
 
-                <label for="about">about</label><br>
-                <textarea name="about" cols="30" rows="10"></textarea>
+                    <label for="about">about</label><br>
+                    <textarea name="about" cols="30" rows="10"></textarea>
 
-                <input type="submit" name="submit" value="add stream">
-            </form>
+                    <input type="submit" name="submit" value="add stream">
+                </form>
+            </div>
         </div>
-    </div>
 
-    <?php include('../footer.php') ?>
-    
-</body>
+        <?php include('../footer.php') ?>
+        
+    </body>
 </html>

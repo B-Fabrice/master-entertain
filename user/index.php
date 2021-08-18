@@ -21,60 +21,62 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <title>entertainer master</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/navbarStyle.css">
-    <link rel="stylesheet" href="css/myhomeStyle.css">
-    <link rel="stylesheet" href="../css/footerStyle.css">
-</head>
-<body>
-    <?php include('navbar.php') ?>
-        
-    <div class="shCont">
+    <head>
+        <title>entertainer master</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/navbarStyle.css">
+        <link rel="stylesheet" href="css/myhomeStyle.css">
+        <link rel="stylesheet" href="../css/footerStyle.css">
+    </head>
+    <body>
+        <?php include('navbar.php') ?>
+            
+        <div class="shCont">
 
-    <?php if($streams): ?>
-    <?php foreach($streams as $stream): ?>
-        <div class="clipCont">
+        <?php if($streams): ?>
+            <?php foreach($streams as $stream): ?>
+                <div class="clipCont">
 
-            <div class="post">
-                <div class="sCover">
-                    <a href="clipDetail.php?stream_id=<?php echo $stream['stream_id'] ?>"><img src="<?php echo $stream['bg_image_url'] ?>" alt="cover"></a>
-                </div>
-                <div class="sDet">
-                    <div class="detCont">
-                        <h3 class="title"><?php echo $stream['title'] ?></h3>
-                        <p><strong>Genre: </strong><?php echo $stream['genre'] ?></p>
-                        <p><strong>duration: </strong><?php echo $stream['duration'] ?>min</p>
-                        <p><strong>Cast: </strong> <?php echo $stream['s_cast'] ?></p>
-                        <p><strong>Price: </strong>$<?php echo $stream['price'] ?></p>                        
+                    <div class="post">
+                        <div class="sCover">
+                            <a href="clipDetail.php?stream_id=<?php echo $stream['stream_id'] ?>"><img src="<?php echo $stream['bg_image_url'] ?>" alt="cover"></a>
+                        </div>
+                        <div class="sDet">
+                            <div class="detCont">
+                                <h3 class="title"><?php echo $stream['title'] ?></h3>
+                                <p><strong>Genre: </strong><?php echo $stream['genre'] ?></p>
+                                <p><strong>duration: </strong><?php echo $stream['duration'] ?>min</p>
+                                <p><strong>Cast: </strong> <?php echo $stream['s_cast'] ?></p>
+                                <p><strong>Price: </strong>$<?php echo $stream['price'] ?></p>                        
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="btnCont">
-                <a class="wishlist" href="wishlist.php?stream_id=<?php echo $stream['stream_id'] ?>"><span>&star;</span></a>
-                <a class="watch" href="watched.php?stream_id=<?php echo $stream['stream_id'] ?>">Watch</a>
-            </div>
+                    <div class="btnCont">
+                        <a class="wishlist" href="wishlist.php?stream_id=<?php echo $stream['stream_id'] ?>"><span>&star;</span></a>
+                        <a class="watch" href="watched.php?stream_id=<?php echo $stream['stream_id'] ?>">Watch</a>
+                    </div>
+
+                </div>
+            <?php endforeach; ?>
+            
+        <?php else: ?>
+            <p>no posted streams yet</p>
+        <?php endif; ?>
 
         </div>
-    <?php endforeach; ?>
-    <?php else: ?>
-    <p>no posted streams yet</p>
-    <?php endif; ?>
+            
+        <?php include('../footer.php') ?>
 
-    </div>
-        
-    <?php include('../footer.php') ?>
-    <script>
-        var welcm = document.createElement('p');
-        var bar = document.querySelector('.nav');
-        welcm.innerHTML = "welcome to master entertainer show plaform for accessing different entertainements. ";
-        bar.appendChild(welcm);
+        <script>
+            var welcm = document.createElement('p');
+            var bar = document.querySelector('.nav');
+            welcm.innerHTML = "welcome to master entertainer show plaform for accessing different entertainements. ";
+            bar.appendChild(welcm);
 
-        var act = document.querySelector('#home');
-        act.classList.add("active");
+            var act = document.querySelector('#home');
+            act.classList.add("active");
 
-    </script>
-</body>
+        </script>
+    </body>
 </html>

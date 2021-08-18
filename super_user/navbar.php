@@ -1,5 +1,5 @@
 <div class="nav">
-<h2>master entertain</h2>
+    <h2>master entertain</h2>
     <div class="ops">
         <a href="index.php">my streams</a>
         <a href="liveStream.php">start live</a>

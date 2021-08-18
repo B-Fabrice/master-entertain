@@ -126,79 +126,79 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <title>User_signup</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/signupStyle.css">
-    <link rel="stylesheet" href="css/footerStyle.css">
-</head>
-<body>
-    <div class="nav">
-        <h3>signup</h3>
-    </div>
-    <div class="loginForm">
-        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <fieldset>
-                <div class="eCont">
-                    <label for="username">username: </label><br>
-                    <input type="text" name="username" value="<?php echo htmlspecialchars($username) ?>" autofocus required><br>
-                    <div class="error"><?php echo $error['username'] ?></div>
+    <head>
+        <title>User_signup</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/signupStyle.css">
+        <link rel="stylesheet" href="css/footerStyle.css">
+    </head>
+    <body>
+        <div class="nav">
+            <h3>signup</h3>
+        </div>
+        <div class="loginForm">
+            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                <fieldset>
+                    <div class="eCont">
+                        <label for="username">username: </label><br>
+                        <input type="text" name="username" value="<?php echo htmlspecialchars($username) ?>" autofocus required><br>
+                        <div class="error"><?php echo $error['username'] ?></div>
 
-                    <label for="email">email: </label><br>
-                    <input type="email" name="email" value="<?php echo htmlspecialchars($email) ?>" required><br>
-                    <div class="error"><?php echo $error['email'] ?></div>
+                        <label for="email">email: </label><br>
+                        <input type="email" name="email" value="<?php echo htmlspecialchars($email) ?>" required><br>
+                        <div class="error"><?php echo $error['email'] ?></div>
 
-                    <label for="tel">telephone: </label><br>
-                    <input type="tel" name="tel" value="<?php echo htmlspecialchars($tel) ?>" required><br>
-                    <div class="error"><?php echo $error['tel'] ?></div>
+                        <label for="tel">telephone: </label><br>
+                        <input type="tel" name="tel" value="<?php echo htmlspecialchars($tel) ?>" required><br>
+                        <div class="error"><?php echo $error['tel'] ?></div>
 
-                    <label for="country">Country:</label><br>
-                    <select name="country">
-                        <?php foreach ($countries as $country):?>
-                            <option ><?php echo $country ?></option>
-                        <?php endforeach ?>
-                    </select><br>
+                        <label for="country">Country:</label><br>
+                        <select name="country">
+                            <?php foreach ($countries as $country):?>
+                                <option ><?php echo $country ?></option>
+                            <?php endforeach ?>
+                        </select><br>
 
-                    <label for="province">Province: </label><br>
-                    <select name="province">
-                        <option value="Eastern">Eastern</option>
-                        <option value="Western">Western</option>
-                        <option value="South">South</option>
-                        <option value="North">North</option>
-                        <option value="Kigali">Kigali</option>
-                    </select><br>
+                        <label for="province">Province: </label><br>
+                        <select name="province">
+                            <option value="Eastern">Eastern</option>
+                            <option value="Western">Western</option>
+                            <option value="South">South</option>
+                            <option value="North">North</option>
+                            <option value="Kigali">Kigali</option>
+                        </select><br>
 
-                    <label for="district">District: </label><br>
-                    <select name="district">
-                        <option value="nyanza">nyanza</option>
-                        <option value="ruyenzi">ruyenzi</option>
-                        <option value="huye">huye</option>
-                        <option value="gisenyi">gisenyi</option>
-                        <option value="musanze">musanze</option>
-                    </select><br>
+                        <label for="district">District: </label><br>
+                        <select name="district">
+                            <option value="nyanza">nyanza</option>
+                            <option value="ruyenzi">ruyenzi</option>
+                            <option value="huye">huye</option>
+                            <option value="gisenyi">gisenyi</option>
+                            <option value="musanze">musanze</option>
+                        </select><br>
 
-                    <input type="radio" name="role" value="user" checked>
-                    <label for="role">user</label><br>
-                    <input type="radio" name="role" value="super_user">
-                    <label for="role">super-user</label><br>
-                    
-                    <label for="password">create password: </label><br>
-                    <input type="password" name="password1" required autocomplete="off"><br>
+                        <input type="radio" name="role" value="user" checked>
+                        <label for="role">user</label><br>
+                        <input type="radio" name="role" value="super_user">
+                        <label for="role">super-user</label><br>
+                        
+                        <label for="password">create password: </label><br>
+                        <input type="password" name="password1" required autocomplete="off"><br>
 
-                    <label for="password">confirm password: </label><br>
-                    <input type="password" name="password2" required autocomplete="off"><br>
-                    <div class="error"><?php echo $error['password'] ?></div>
+                        <label for="password">confirm password: </label><br>
+                        <input type="password" name="password2" required autocomplete="off"><br>
+                        <div class="error"><?php echo $error['password'] ?></div>
 
-                    <input type="submit" name="submit" value="signup">
-                    <div class="reg">
-                        <p>already have account? <a href="index.php">login</a></p>
-                    
+                        <input type="submit" name="submit" value="signup">
+                        <div class="reg">
+                            <p>already have account? <a href="index.php">login</a></p>
+                        
+                        </div>
                     </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
+                </fieldset>
+            </form>
+        </div>
 
-    <?php include('footer.php')?>
-</body>
+        <?php include('footer.php')?>
+    </body>
 </html>
