@@ -41,7 +41,7 @@
             header('Location: super_user/');
         }
     }
-    nclude('connection.php');
+    include('connection.php');
     $username = $email = $tel = '';
     $error = array('username'=>'', 'email'=>'', 'tel'=>'', 'password'=>'');
 
@@ -93,34 +93,35 @@
                 $error['password'] = "password must at least be of 8 character";
             }
 
-           if(!array_filter($error)){              
-               $user_sql = "INSERT INTO users(user_name, email, telephone, country, province, district, passcode)
-                VALUES('$username', '$email', '$tel', '$country', '$province', '$district', '$password1')";
-
-                if(mysqli_query($conn, $user_sql)){
-                    $sql = "SELECT * FROM users WHERE email = '$email'";
-                    $result = mysqli_query($conn, $sql);
-                    $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                    $user_id = (int)$user[0]['user_id'];
-                    
-                   if($myrole == 'user'){
-                       $newsql = "INSERT INTO user_role(is_user, user_id) VALUES(1, $user_id)";
-                       $insert_role = mysqli_query($conn, $newsql);
-                       if($insert_role){
-                           header('location: index.php?mssg=acount created successful');
-                       }
-                   }
-                   else if($myrole == 'super_user'){
-                       $newsql = "INSERT INTO user_role(is_super_user, user_id) VALUES(1, $user_id)";
-                       $insert_role = mysqli_query($conn, $newsql);
-                       if($insert_role){
-                            header('Location: index.php?mssg=account created successful');
+            if(!array_filter($error)){
+                $passcode = password_hash($password1, PASSWORD_DEFAULT);              
+                $user_sql = "INSERT INTO users(user_name, email, telephone, country, province, district, passcode)
+                 VALUES('$username', '$email', '$tel', '$country', '$province', '$district', '$passcode')";
+ 
+                 if(mysqli_query($conn, $user_sql)){
+                     $sql = "SELECT * FROM users WHERE email = '$email'";
+                     $result = mysqli_query($conn, $sql);
+                     $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                     $user_id = (int)$user[0]['user_id'];
+                     
+                    if($myrole == 'user'){
+                        $newsql = "INSERT INTO user_role(is_user, user_id) VALUES(1, $user_id)";
+                        $insert_role = mysqli_query($conn, $newsql);
+                        if($insert_role){
+                            header('location: index.php?mssg=acount created successful');
                         }
-                   }
-               }
-            
-            }
-        }
+                    }
+                    else if($myrole == 'super_user'){
+                        $newsql = "INSERT INTO user_role(is_super_user, user_id) VALUES(1, $user_id)";
+                        $insert_role = mysqli_query($conn, $newsql);
+                        if($insert_role){
+                             header('Location: index.php?mssg=account created successful');
+                         }
+                    }
+                }
+             
+             }
+         }
     }
 ?>
 

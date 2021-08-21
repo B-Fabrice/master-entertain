@@ -19,44 +19,50 @@
         $user_role = $_POST['myrole'];
         $passcode = htmlspecialchars($_POST['password']);
 
-        $user_sql = "SELECT * FROM users WHERE email = '$email' AND passcode = '$passcode' LIMIT 1";
+        $user_sql = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
 
         $result = mysqli_query($conn, $user_sql);
-        $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $user = mysqli_fetch_assoc($result);
 
-        if(array_filter($user)){      
-            $user_id = (int)$user[0]['user_id'];
-            $role_sql = "SELECT * FROM user_role WHERE user_id = $user_id";
-            $roles = mysqli_query($conn, $role_sql);
-            $myrole = mysqli_fetch_all($roles,   MYSQLI_ASSOC);
+        if(array_filter($user)){   
+            if(password_verify($passcode, $user['passcode'])){
+                $user_id = (int)$user['user_id'];
+                $role_sql = "SELECT * FROM user_role WHERE user_id = $user_id";
+                $roles = mysqli_query($conn, $role_sql);
+                $myrole = mysqli_fetch_all($roles,   MYSQLI_ASSOC);
+                
+                if($user_role == "user"){
+                    if($myrole[0]['is_user']){
+                        session_start();
+                        $_SESSION['user_id'] = $user_id;
+                        $_SESSION['user_name'] = $user[0]['user_name'];
+                        $_SESSION['is_user'] = true;
+                        header('Location: user/');
+                        exit();
+                    }
+                    else{
+                        $error = "incorrect email or password";
+                    }
+                }
+
+                else if($user_role == "super_user"){
+                    if($myrole[0]['is_super_user']){
+                        session_start();
+                        $_SESSION['user_id'] = $user_id;
+                        $_SESSION['user_name'] = $user[0]['user_name'];
+                        $_SESSION['is_super_user'] = true;
+                        header('Location: super_user/');
+                        exit();
+                    }
+                    else{
+                        $error = "incorrect email or password";
+                    }
+                }
+            } 
+            else{
+                $error = "incorrect email or password";
+            }  
             
-            if($user_role == "user"){
-                if($myrole[0]['is_user']){
-                    session_start();
-                    $_SESSION['user_id'] = $user_id;
-                    $_SESSION['user_name'] = $user[0]['user_name'];
-                    $_SESSION['is_user'] = true;
-                    header('Location: user/');
-                    exit();
-                }
-                else{
-                    $error = "incorrect email or password";
-                }
-            }
-
-            else if($user_role == "super_user"){
-                if($myrole[0]['is_super_user']){
-                    session_start();
-                    $_SESSION['user_id'] = $user_id;
-                    $_SESSION['user_name'] = $user[0]['user_name'];
-                    $_SESSION['is_super_user'] = true;
-                    header('Location: super_user/');
-                    exit();
-                }
-                else{
-                    $error = "incorrect email or password";
-                }
-            }
         }
 
         else{

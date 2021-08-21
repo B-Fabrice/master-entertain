@@ -86,8 +86,10 @@
                     <label for="title">Title</label><br>
                     <input type="text" name="title"><br>
 
-                    <label for="bg_image">Stream Background</label><br>
-                    <input type="file" name="bg_image"><br>
+                    <div class="fileUpload">
+                        <input type="file" class="upload" name="bg_image"/>
+                        <span>Upload stream cover</span>
+                    </div>
 
                     <label for="genre">Genre</label><br>
                     <input type="text" name="genre"><br>
@@ -95,8 +97,10 @@
                     <label for="cast">cast</label><br>
                     <input type="text" name="cast"><br>
 
-                    <label for="duration">Stream File</label><br>
-                    <input type="file" name="file"><br>
+                    <div class="fileUpload">
+                        <input type="file" class="upload" name="file"/>
+                        <span>Upload stream cover</span>
+                    </div>
 
                     <label for="duration">Duration</label><br>
                     <input type="datetime" name="duration"><br>

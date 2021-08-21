@@ -35,3 +35,40 @@
     color: white;
     background-color: #1e2321;
 }
+
+.fileUpload {
+	background: #bfdbcc;
+	border-radius: 5px;
+	color: black;
+	margin: 15px auto;
+	overflow: hidden;
+	padding: 10px 15px;
+	position: relative;
+	text-align: center;
+	width: 220px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.fileUpload:hover, .fileUpload:active, .fileUpload:focus {
+	background: #86a292;
+    cursor: pointer;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    width: 148px;
+    height: 46px;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    position: fixed;
+    right: 100%;
+    bottom: 100%;
+}
