@@ -5,6 +5,10 @@ body{
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
+.notfound{
+    margin-top: 200px;
+}
+
 *{
     box-sizing: border-box;
 }

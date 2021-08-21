@@ -8,7 +8,7 @@
     padding: 30px;
 }
 
-.clipCOnt input, textarea{
+.clipCOnt input[type=text], .clipCOnt input[type=datetime], textarea{
     border: none;
     padding: 5px;
     outline: none;
@@ -23,6 +23,7 @@
 
 .clipCOnt input[type=submit]{
     border: none;
+    outline: none;
     padding: 15px 25px;
     border-radius: 3px;
     font-size: large;
@@ -71,4 +72,16 @@ input[type="file"] {
     position: fixed;
     right: 100%;
     bottom: 100%;
+}
+
+.progress{
+    width: 100%;
+    padding: 20px;
+}
+
+.progress-bar{
+	border-radius: 5px;
+    height: 100%;
+    background-color: #5d6b64;
+    color: white;
 }

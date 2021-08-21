@@ -12,19 +12,19 @@
 
                 $result = mysqli_query($conn, $sql);
                 $stream = mysqli_fetch_assoc($result);
+                if($stream){
+                    $stream_id =  $stream['stream_id'];
+                    $watch_sql = "SELECT * FROM stream_watches WHERE stream_id = $stream_id";
+                    $watches = mysqli_query($conn, $watch_sql);
+                    $watch_count = mysqli_num_rows($watches);
 
-                mysqli_free_result($result);
+                    $downloads_sql = "SELECT * FROM stream_downloads WHERE stream_id = $stream_id";
+                    $downloads = mysqli_query($conn, $downloads_sql);
+                    $download_count = mysqli_num_rows($downloads);
 
-                $stream_id =  $stream['stream_id'];
-                $watch_sql = "SELECT * FROM stream_watches WHERE stream_id = $stream_id";
-                $watches = mysqli_query($conn, $watch_sql);
-                $watch_count = mysqli_num_rows($watches);
+                    mysqli_close($conn);
+                }
 
-                $downloads_sql = "SELECT * FROM stream_downloads WHERE stream_id = $stream_id";
-                $downloads = mysqli_query($conn, $downloads_sql);
-                $download_count = mysqli_num_rows($downloads);
-
-                mysqli_close($conn);
             }
             else{
                 header('Location: index.php');
@@ -46,6 +46,22 @@
         <link rel="stylesheet" href="../css/footerStyle.css">
     </head>
     <body>
+        <div class="conf_delete" id="strm_delete">
+            <div class="m_Cont">
+                <p class="title" >confirm delete</p>
+
+                <div class="info">
+                    <p>are you sure to delete this file</p>
+                    <p>this file will be deleted from  database permanently</p>
+                </div>
+
+                <div class="confirm">
+                    <button id="cancel" onclick="showConf('0')">Cancel</button>
+                    <button id ="delete">Delete</button>
+                </div>
+            </div>
+        </div>
+
         <?php include('navbar.php') ?>
 
         <?php if($stream): ?>
@@ -65,26 +81,28 @@
                     <div><strong><?php echo $download_count ?> download</strong></div>
                     <div><p><?php echo $stream['about'] ?></p></div>
                 </div>
-                <div class="deletebtn"><button id="dltbtn">delete</button></div>
+                <div class="deletebtn" onclick="showConf('100%')"><button id="dltbtn">delete</button></div>
         </div>
         <?php else: ?>
-            <p>no seach stream found</p>
+            <p class="notfound">no seach stream found</p>
         <?php endif; ?>
         
         <?php include('../footer.php') ?>
 
         <script>
-            var btn = document.querySelector("#dltbtn");
+            var btn = document.querySelector("#delete");
+            var conf = document.querySelector('#strm_delete');
 
-            btn.onclick = function() {
-                var conf = confirm("are you sure to delete this stream.\nit will be removed from database!\npress ok to delete it.");
-                if(conf == true){
-                    var link = document.createElement('a'),
-                    url = document.createAttribute('href');
-                    url.value = "deleteStream.php?stream_id=<?php echo $stream_id ?>";
-                    link.attributes.setNamedItem(url);
-                    link.click();
-                }
+            function showConf(height){
+                conf.style.height = height;
+            }
+
+            btn.onclick = function(){
+                var link = document.createElement('a'),
+                url = document.createAttribute('href');
+                url.value = "deleteStream.php?stream_id=<?php echo $stream_id ?>";
+                link.attributes.setNamedItem(url);
+                link.click();
             }
         </script>
             

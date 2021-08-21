@@ -84,39 +84,79 @@
             <div class="clipCOnt">
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
                     <label for="title">Title</label><br>
-                    <input type="text" name="title"><br>
+                    <input type="text" name="title" required><br>
 
                     <div class="fileUpload">
-                        <input type="file" class="upload" name="bg_image"/>
+                        <input type="file" class="upload" name="bg_image" required>
                         <span>Upload stream cover</span>
                     </div>
 
                     <label for="genre">Genre</label><br>
-                    <input type="text" name="genre"><br>
+                    <input type="text" name="genre" required><br>
 
                     <label for="cast">cast</label><br>
-                    <input type="text" name="cast"><br>
+                    <input type="text" name="cast" required><br>
 
                     <div class="fileUpload">
-                        <input type="file" class="upload" name="file"/>
+                        <input type="file" class="upload" id="stream_file" name="file">
                         <span>Upload stream cover</span>
                     </div>
 
+                    <div class="progress" id="progress_bar" style="display:none; ">
+                        <div class="progress-bar" id="progress_bar_process" role="progressbar" style="width:0%"></div>
+                    </div>
+
                     <label for="duration">Duration</label><br>
-                    <input type="datetime" name="duration"><br>
+                    <input type="datetime" name="duration" required><br>
 
                     <label for="price">price</label><br>
-                    <input type="text" name="price"><br>
+                    <input type="text" name="price" required><br>
 
                     <label for="about">about</label><br>
-                    <textarea name="about" cols="30" rows="10"></textarea>
+                    <textarea name="about" cols="30" rows="10" required></textarea><br>
 
-                    <input type="submit" name="submit" value="add stream">
+                    <input type="hidden" id="submit" name="submit" value="post stream">
                 </form>
             </div>
         </div>
 
         <?php include('../footer.php') ?>
+
+        <script>
+            function _(element){
+                return document.getElementById(element);
+            }
+
+        _('stream_file').onchange = function(event){        
+            var form_data = new FormData();        
+            var image_number = 1;        
+            var error = '';
+        
+            for(var count = 0; count < _('stream_file').files.length; count++){
+                error += '<div class="alert alert-danger"><b>'+image_number+'</b> Selected File must be .jpg or .png Only.</div>';
+                form_data.append("images[]", _('stream_file').files[count]);            
+                image_number++;
+            }
+        
+
+            _('progress_bar').style.display = 'block';
+            var ajax_request = new XMLHttpRequest();        
+            ajax_request.open("POST", "master_addClip.php");
+
+            ajax_request.upload.addEventListener('progress', function(event){                
+                var percent_completed = Math.round((event.loaded / event.total) * 100);                
+                _('progress_bar_process').style.width = percent_completed + '%';                
+                _('progress_bar_process').innerText = percent_completed + '% completed';                
+            });
+            
+            ajax_request.addEventListener('load', function(event){                
+                _('stream_file').value = '';
+                _('submit').getAttributeNode('type').value = "submit";
+            });
+            
+            ajax_request.send(form_data); 
+        };
+        </script>
         
     </body>
 </html>
